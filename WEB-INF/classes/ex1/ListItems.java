@@ -1,3 +1,4 @@
+
 package ex1;
 
 import java.io.*;
@@ -40,17 +41,30 @@ public class ListItems extends HttpServlet {
         } else {
             out.println("<ul>");
 
-            for (String item : items) {
+            for (int i = 0; i < items.size(); i++) {
 
-                int count = 0;
+                String item = items.get(i);
 
-                for (String i : items) {
-                    if (i.equalsIgnoreCase(item)) {
-                        count++;
+                // Vérifier si cet item a déjà été affiché
+                boolean dejaAffiche = false;
+
+                for (int j = 0; j < i; j++) {
+                    if (items.get(j).equalsIgnoreCase(item)) {
+                        dejaAffiche = true;
+                        break;
                     }
                 }
 
-                if (items.indexOf(item) == items.lastIndexOf(item)) {
+                if (!dejaAffiche) {
+
+                    int count = 0;
+
+                    for (String element : items) {
+                        if (element.equalsIgnoreCase(item)) {
+                            count++;
+                        }
+                    }
+
                     out.println("<li>" + item + " : "
                                 + count + " fois</li>");
                 }
