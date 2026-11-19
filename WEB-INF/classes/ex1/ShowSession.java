@@ -1,4 +1,3 @@
-
 package ex1;
 
 import java.io.*;
@@ -18,10 +17,22 @@ public class ShowSession extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+        // Récupérer le nombre de sessions actives
+        Integer activeSessions = (Integer)
+                getServletContext().getAttribute("activeSessions");
+
+        if (activeSessions == null) {
+            activeSessions = 0;
+        }
+
         String fullName = (String) session.getAttribute("fullName");
         String birthDate = (String) session.getAttribute("birthDate");
 
         out.println("<html><body>");
+
+        // Afficher le nombre de sessions actives
+        out.println("<h2>Nombre de sessions actives : "
+                + activeSessions + "</h2>");
 
         if (fullName == null || birthDate == null) {
 

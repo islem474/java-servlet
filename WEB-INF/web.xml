@@ -35,6 +35,15 @@
     <url-pattern>/VisitCookie</url-pattern>
 </servlet-mapping>
 <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>ex1.LoginServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+</servlet-mapping>
+
+<servlet>
     <servlet-name>ShowSession</servlet-name>
     <servlet-class>ex1.ShowSession</servlet-class>
 </servlet>
@@ -53,6 +62,31 @@
     <servlet-name>ListItems</servlet-name>
     <url-pattern>/ListItems</url-pattern>
 </servlet-mapping>
+
+<filter>
+    <filter-name>LoggingFilter</filter-name>
+    <filter-class>ex1.LoggingFilter</filter-class>
+
+    <init-param>
+        <param-name>logPrefix</param-name>
+        <param-value>[LOG]</param-value>
+    </init-param>
+</filter>
+
+<filter-mapping>
+    <filter-name>LoggingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+<filter>
+    <filter-name>SecurityFilter</filter-name>
+    <filter-class>ex1.SecurityFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>SecurityFilter</filter-name>
+    <url-pattern>/ListItems</url-pattern>
+</filter-mapping>
+
 
 
 </web-app>
